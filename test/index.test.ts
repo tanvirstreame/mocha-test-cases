@@ -39,6 +39,9 @@ describe('#getObject() function', function () {
   it('should return passed parameter', function () {
     assert.deepEqual(getObject({ a: 1 }), { a: 1 });
     expect(getObject({ a: 1 })).to.have.property('a');
+    expect({a: 1, b: 2}).to.not.have.any.keys('c', 'd');
+    expect({a: 1, b: 2}).to.have.any.keys('b', 'c');
+    expect({a: 1, b: 2}).to.have.all.keys('a', 'b');
     expect(getObject()).to.be.a('object');
   });
 });
