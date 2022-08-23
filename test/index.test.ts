@@ -16,9 +16,11 @@ describe('#getNumber() function', function () {
 
   it('should return passed parameter', function () {
     assert.equal(getNumber(2), 2);
+    expect(getNumber(NaN)).to.be.NaN;
     expect(getNumber(null)).to.be.null;
     expect(getNumber(undefined)).not.to.be.undefined;
     expect(getNumber(2)).to.be.a('number');
+    expect(getNumber(2)).to.be.finite;
   });
 });
 
@@ -47,7 +49,11 @@ describe('#getObject() function', function () {
     expect(getObject({a: 1, b: 2})).to.have.any.keys('b', 'c');
     expect(getObject({a: 1, b: 2})).to.have.all.keys('a', 'b');
     expect(getObject(null)).to.be.null;
+    expect(getNumber(NaN)).to.be.NaN;
     expect(getObject(undefined)).not.to.be.undefined;
-    expect(getObject()).to.be.a('object');
+    expect(getObject({})).to.be.a('object');
+    expect(getObject({})).to.be.empty;
+    expect(getObject({a: 1, b: 2})).not.to.be.empty;
+    expect(Object.keys(getObject({a: 1, b: 2}))).to.have.lengthOf(2);
   });
 });
