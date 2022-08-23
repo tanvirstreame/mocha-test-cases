@@ -17,6 +17,8 @@ describe('#getNumber() function', function () {
   it('should return passed parameter', function () {
     assert.equal(getNumber(2), 2);
     expect(getNumber(NaN)).to.be.NaN;
+    expect(getNumber(Infinity)).to.equal(Infinity);
+    expect(getNumber(-Infinity)).to.equal(-Infinity);
     expect(getNumber(null)).to.be.null;
     expect(getNumber(undefined)).not.to.be.undefined;
     expect(getNumber(2)).to.be.a('number');
