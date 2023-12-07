@@ -4,7 +4,9 @@ import chai from 'chai';
 import {
   getNumber,
   getString,
-  getObject
+  getObject,
+  getSum,
+
 } from "../src/index";
 const expect = chai.expect;
 
@@ -57,5 +59,12 @@ describe('#getObject() function', function () {
     expect(getObject({})).to.be.empty;
     expect(getObject({a: 1, b: 2})).not.to.be.empty;
     expect(Object.keys(getObject({a: 1, b: 2}))).to.have.lengthOf(2);
+  });
+});
+
+describe('#getSum() function', function () {
+  it('should return sum', function () {
+    expect(getSum(2, 2)).to.be.a('number');
+    expect(getSum(2, 2)).to.be.equal(4)
   });
 });
