@@ -75,4 +75,15 @@ describe('#outFunction() function', function () {
     sumStub.restore();
     expect(sumStub).to.be.a('function');
   });
+
+  it('should return sum called from inner function with proper arguments', function () {
+    const num1 = 4, num2 = 5;
+    const sumStub = sinon.stub(service,"getSum").returns(9);;
+    const result = service.outFunction(num1, num2);
+    expect(result).to.be.equal(9);
+    assert.equal(sumStub.callCount, 1);
+    sinon.assert.calledWithExactly(sumStub, 4, 5);
+    sumStub.restore();
+    expect(sumStub).to.be.a('function');
+  });
 });
