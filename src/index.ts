@@ -11,6 +11,9 @@ export const getObject = (value:object = {}) => {
 }
 
 export const getSum = (num1: number, num2: number) => {
+  if(num1 < 0 || num2 < 0) {
+    throw new Error('Parameters should be positive.')
+  }
   return num1 + num2;
 }
 
