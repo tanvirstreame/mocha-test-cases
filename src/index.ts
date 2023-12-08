@@ -13,3 +13,8 @@ export const getObject = (value:object = {}) => {
 export const getSum = (num1: number, num2: number) => {
   return num1 + num2;
 }
+
+export const outFunction = (num1: number, num2: number) => {
+  const result = getSum(num1, num2);
+  return result;
+}
