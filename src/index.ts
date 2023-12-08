@@ -1,3 +1,4 @@
+import axios from 'axios';
 export const getNumber = (value:number = 1) => {
   return value;
 }
@@ -20,4 +21,8 @@ export const getSum = (num1: number, num2: number) => {
 export const outFunction = (num1: number, num2: number) => {
   const result = getSum(num1, num2);
   return result;
+}
+
+export const getGithubApi = async () => {
+  return await axios.get('https://api.github.com');
 }

@@ -1,6 +1,7 @@
 import assert from 'assert';
 import chai from 'chai';
 import sinon from 'sinon';
+import nock from 'nock';
 import
   * as service
   from "../src/index";
@@ -106,5 +107,20 @@ describe('#outFunction() function', function () {
     sinon.assert.calledOnce(sumStub);
     sumStub.restore();
     expect(sumStub).to.be.a('function');
+  });
+});
+
+describe('#getGithubApi() function', function () {
+  it('get api', async function () {
+    const response = {
+      current_user_url: "https://api.github.com/user",
+      notifications_url: "https://api.github.com/notifications",
+    }
+    nock('https://api.github.com').get('/').reply(200, response);
+    const result = await service.getGithubApi();
+    expect(result.data).to.deep.equal(response);
+    expect(result.data).to.be.haveOwnProperty('current_user_url');
+    expect(result.data).to.be.haveOwnProperty('notifications_url');
+    expect(result.data).to.be.a('object');
   });
 });
